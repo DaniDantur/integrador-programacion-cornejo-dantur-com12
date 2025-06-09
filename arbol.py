@@ -1,4 +1,4 @@
-def crear_nodo_arbol(valor):
+def crear_nodo_arbol(valor) -> list:
     return [valor]
 
 def agregar_hijo(nodo_padre, nodo_hijo):
@@ -7,10 +7,14 @@ def agregar_hijo(nodo_padre, nodo_hijo):
 def obtener_valor(nodo):
     return nodo[0]
 
-def obtener_hijos(nodo):
-    return nodo[1:] 
+def obtener_hijos(nodo) -> list:
+    return nodo[1:]
 
-def es_hoja(nodo):
+def eliminar_hijo(nodo_padre, nodo_hijo):
+    if nodo_hijo in obtener_hijos(nodo_padre):
+        nodo_padre.remove(nodo_hijo)
+
+def es_hoja(nodo) -> bool:
     return len(obtener_hijos(nodo)) == 0
 
 def recorrer(nodo):
@@ -21,7 +25,7 @@ def recorrer(nodo):
     for hijo in obtener_hijos(nodo):
         recorrer(hijo)
 
-def altura(nodo):
+def altura(nodo) -> int:
     if nodo is None:
         return -1
     elif not nodo or es_hoja(nodo):
