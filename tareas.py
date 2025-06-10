@@ -36,9 +36,12 @@ def mostrar_tareas(nodo):
     
     for indice, hijo in enumerate(obtener_hijos(nodo)):
         valor = obtener_valor(hijo)
-        subtareas = len(obtener_hijos(hijo))
         print(f'{indice + 1}. {'[x]' if valor['completada'] else '[ ]'} {valor['titulo']}', end=' ')
-        print(f'({'1 subtarea' if subtareas == 1 else f'{subtareas} subtareas'})') if subtareas > 0 else print()
+        if not es_hoja(hijo):
+            subtareas = len(obtener_hijos(hijo))
+            print(f'({'1 subtarea' if subtareas == 1 else f'{subtareas} subtareas'})')
+        else:
+            print()
 
 
 def limpiar_pantalla():
